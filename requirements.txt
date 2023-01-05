@@ -4,5 +4,5 @@ pillow
 streamlit_lottie
 streamlit_option_menu
 pandas
-xlwings
+bokeh.models.widgets
 plotly-express
