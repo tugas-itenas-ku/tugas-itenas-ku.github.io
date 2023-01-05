@@ -4,5 +4,5 @@ pillow
 streamlit_lottie
 streamlit_option_menu
 pandas
-bokeh
+bokeh==2.4.3
 plotly-express
