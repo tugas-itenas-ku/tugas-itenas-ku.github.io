@@ -3,6 +3,8 @@ import streamlit as st
 from streamlit_lottie import st_lottie  
 from PIL import Image
 from streamlit_option_menu import option_menu
+from bokeh.models.widgets import Div
+
 
 
 # Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
@@ -15,11 +17,18 @@ def load_lottieurl(url):
     return r.json()
 
 
-# Use local CSS
+#---FUNGSI---
+# MEMANGGIL CSS
 def local_css(file_name):   
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
+# MEMANGGIL TOMBOL
+def tombol(link):
+    if st.button('Tonton Video'):
+        js = f"window.open({link})"  # New tab or window
+        html = '<img src onerror="{}">'.format(js)
+        div = Div(text=html)
+        st.bokeh_chart(div)
 
 local_css("style/style.css")
 
@@ -30,23 +39,15 @@ img_vid2 = Image.open("images/sipil_what.jpg")
 img_construction = Image.open("images/wow.jpg")
 
 
+
 # BAGIAN NAVBAR
 selected2 = option_menu(None, ["Home", "Upload", "Tasks", 'Settings'], 
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 selected2
 
-# 3. CSS style definitions
-selected3 = option_menu(None, ["Home", "Upload",  "Tasks", 'Settings'], 
-    icons=['house', 'cloud-upload', "list-task", 'gear'], 
-    menu_icon="cast", default_index=0, orientation="horizontal",
-    styles={
-        "container": {"padding": "0!important", "background-color": "#fafafa"},
-        "icon": {"color": "orange", "font-size": "25px"}, 
-        "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-        "nav-link-selected": {"background-color": "green"},
-    }
-)
+
+
 
 # ---- BAGIAN HEADER ----
 with st.container():
@@ -64,7 +65,7 @@ with st.container():
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
-    with left_column:
+    with left_column:       
         st.header("Apa yang kita lakukan ?")
         st.write("##")
         st.write(
@@ -77,27 +78,10 @@ with st.container():
             - Stuktur Bangunan.
             """
         )
-        st.write("[YouTube Channel >](https://youtube.com/c/CodingIsFun)")
     with right_column:
         st_lottie(lottie_coding, height=300, key="coding")
 
-# ---- BACKGROUND ----
-def add_bg_from_url():
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("https://cdn.pixabay.com/photo/2019/04/24/11/27/flowers-4151900_960_720.jpg");
-             background-attachment: fixed;
-             background-size: cover
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-    )
-
     # ---- REFERENSI ----
-
 with st.container():
     image_column, text_column = st.columns((1, 2))
     with image_column:
@@ -111,7 +95,7 @@ with st.container():
 Dari pada penasaran yuk nonton videonya sekarang dan share juga ke temen-temen kamu yaa.’.
             """
         )
-        st.markdown("[Tonton video...](https://youtu.be/FOULV9Xij_8)")
+        tombol('https://youtu.be/FOULV9Xij_8')
         
 
 with st.container():
@@ -126,4 +110,10 @@ with st.container():
             Ingin membahas tentang website kita, yaitu tentang Teknik Sipil’.
             """
         )
-        st.markdown("[Tonton video...](https://youtu.be/HOz_iGercHU)")
+        if st.button('Tonton Video >'):
+            js = "window.open('https://youtu.be/HOz_iGercHU')"  # New tab or window
+            html = '<img src onerror="{}">'.format(js)
+            div = Div(text=html)
+            st.bokeh_chart(div)
+
+        
