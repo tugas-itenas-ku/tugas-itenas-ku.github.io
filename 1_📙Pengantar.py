@@ -95,9 +95,12 @@ with st.container():
 Dari pada penasaran yuk nonton videonya sekarang dan share juga ke temen-temen kamu yaa.’.
             """
         )
-        tombol('https://youtu.be/FOULV9Xij_8')
-        
-
+        if st.button('Tonton Video >'):
+            js = "window.open('https://youtu.be/FOULV9Xij_8')"  # New tab or window
+            html = '<img src onerror="{}">'.format(js)
+            div = Div(text=html)
+            st.bokeh_chart(div)
+       
 with st.container():
     image_column, text_column = st.columns((1, 2))
     with image_column:
@@ -110,7 +113,7 @@ with st.container():
             Ingin membahas tentang website kita, yaitu tentang Teknik Sipil’.
             """
         )
-        if st.button('Tonton Video >'):
+        if st.button('Tonton Video >>'):
             js = "window.open('https://youtu.be/HOz_iGercHU')"  # New tab or window
             html = '<img src onerror="{}">'.format(js)
             div = Div(text=html)
