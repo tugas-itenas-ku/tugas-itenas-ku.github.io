@@ -96,7 +96,7 @@ Dari pada penasaran yuk nonton videonya sekarang dan share juga ke temen-temen k
             """
         )
         if st.button('Tonton Video >'):
-            js = "window.open('https://youtu.be/FOULV9Xij_8')"  # New tab or window
+            js = "window.open('https://youtu.be/F-RaoQr3dVs')"  # New tab or window
             html = '<img src onerror="{}">'.format(js)
             div = Div(text=html)
             st.bokeh_chart(div)
